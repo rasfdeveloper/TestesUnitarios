@@ -1,6 +1,7 @@
 package br.ce.wcaquino.servicos;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,7 +26,7 @@ public class CalculadoraTest {
 		int resultado = calc.somar(a, b);
 		
 		//verificacao
-		Assert.assertEquals(8, resultado);
+		assertEquals(8, resultado);
 		
 	}
 	
@@ -39,7 +40,7 @@ public class CalculadoraTest {
 		int resultado = calc.subtrair(a, b);
 		
 		//verificacao
-		Assert.assertEquals(3, resultado);
+		assertEquals(3, resultado);
 		
 	}
 	
@@ -53,7 +54,7 @@ public class CalculadoraTest {
 		int resultado = calc.divide(a, b);
 		
 		//verificacao
-		Assert.assertEquals(2, resultado);
+		assertEquals(2, resultado);
 	}
 	
 	@Test(expected = NaoPodeDividirPorZeroException.class)
@@ -62,5 +63,15 @@ public class CalculadoraTest {
 		int b = 0;
 		
 		calc.divide(a, b);
+	}
+	
+	@Test
+	public void deveDividir(){
+		String a = "6";
+		String b = "3";
+		
+		int resultado = calc.divide(a,b);
+		
+		assertEquals(2, resultado);
 	}
 }
