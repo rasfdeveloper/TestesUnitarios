@@ -1,6 +1,7 @@
 package br.ce.wcaquino.servicos;
 
 import static br.ce.wcaquino.builder.FilmeBuilder.umFilme;
+import static br.ce.wcaquino.builder.UsuarioBuilder.umUsuario;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -14,7 +15,11 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
+import org.mockito.Mockito;
 
+import br.ce.wcaquino.builder.UsuarioBuilder;
+import br.ce.wcaquino.dao.LocacaoDAO;
+import br.ce.wcaquino.dao.LocacaoDAOFake;
 import br.ce.wcaquino.entidades.Filme;
 import br.ce.wcaquino.entidades.Locacao;
 import br.ce.wcaquino.entidades.Usuario;
@@ -25,6 +30,10 @@ import br.ce.wcaquino.exceptions.LocadoraException;
 public class CalculoValorLocacaoTest {
 
 	private LocacaoService service;
+	
+	private SPCService spc;
+	
+	private LocacaoDAO dao;
 	
 	@Parameter
 	public List<Filme> filmes;
@@ -38,6 +47,10 @@ public class CalculoValorLocacaoTest {
 	@Before
 	public void setup(){
 		service = new LocacaoService();
+		dao = Mockito.mock(LocacaoDAO.class);
+		service.setLocacaoDAO(dao);
+		spc = Mockito.mock(SPCService.class);
+		service.setSPCService(spc);
 	}
 	
 	private static Filme filme1 = umFilme().nome("Filme 1").precoLocacao(4.0).agora();
@@ -63,7 +76,7 @@ public class CalculoValorLocacaoTest {
 	@Test
 	public void deveCalcularValorLocacaoConsiderandoDescontos() throws FilmeSemEstoqueException, LocadoraException{
 		//cenario
-		Usuario usuario = new Usuario("Usuario 1");
+		Usuario usuario = umUsuario().agora();
 		
 		//acao
 		Locacao resultado = service.alugarFilme(usuario, filmes);

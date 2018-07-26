@@ -9,7 +9,7 @@ public class Usuario {
 	public Usuario(String nome) {
 		this.nome = nome;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}
@@ -42,4 +42,13 @@ public class Usuario {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [nome=" + nome + "]";
+	}
+	
+	
+	
+	
 }

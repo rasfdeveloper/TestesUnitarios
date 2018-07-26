@@ -19,4 +19,9 @@ public class UsuarioBuilder {
 		return usuario;
 	}
 	
+	public UsuarioBuilder nome(String nome){
+		usuario.setNome(nome);
+		return this;
+	}
+	
 }
