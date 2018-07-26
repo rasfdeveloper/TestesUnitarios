@@ -11,7 +11,7 @@ import java.util.Date;
 public class DataUtils {
 	
 	/**
-	 * Retorna a data enviada por parametro com a adiÃ§Ã£o dos dias desejado
+	 * Retorna a data enviada por parametro com a adição dos dias desejado
 	 * 	a Data pode estar no futuro (dias > 0) ou no passado (dias < 0)
 	 * 
 	 * @param data
